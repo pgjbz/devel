@@ -37,7 +37,7 @@ lista=$1
 
 if [ $# -eq 0 ]
 then
-   lista='1 2 3 4 5 6 7 8'
+   lista='1 2 3 4 5 6 7 8 9'
    orientacao="Usage: prompt [theme]"
 fi
 
@@ -132,6 +132,17 @@ for i in $lista; do
 	COR_CURSOR=${COR[7]}
       ;;
 
+	9)
+	COR_BASE=${COR[4]}
+	COR_USER=${COR[1]}
+	COR_ARROBA=${COR[7]}
+	COR_SERVER=${COR[1]}
+	COR_DIR=${COR[7]}
+	COR_HORARIO=${COR[7]}
+	COR_BATERIA=${COR[3]}
+	COR_CURSOR=${COR[7]}
+      ;;
+
       *)
 	COR_BASE=${COR[1]}
 	COR_USER=${COR[3]}
@@ -177,11 +188,11 @@ LOADAVERAGE='['${COR_BATERIA}'$(cat /proc/loadavg | cut -d" " -f1-3)'${COR_BASE}
 
 # Sem Bateria e sem Loadaverage
 
-PS1="${ANTES}${ERRO}${COR_BASE}[${USER}${COR_ARROBA}@${SERVER}${COR_BASE}]${SEPARADOR}${COR_BASE}[${DIR}${COR_BASE}]${SEPARADOR}[${HORARIO}${COR_BASE}]${DEPOIS}${CURSOR}${COR[0]}"
+#PS1="${ANTES}${ERRO}${COR_BASE}[${USER}${COR_ARROBA}@${SERVER}${COR_BASE}]${SEPARADOR}${COR_BASE}[${DIR}${COR_BASE}]${SEPARADOR}[${HORARIO}${COR_BASE}]${DEPOIS}${CURSOR}${COR[0]}"
 
 # Sem Bateria, sem loadaverage sem horário
 
-#PS1="${ANTES}${ERRO}${COR_BASE}[${USER}${COR_ARROBA}@${SERVER}${COR_BASE}]${SEPARADOR}${COR_BASE}[${DIR}${COR_BASE}]${DEPOIS}${CURSOR}${COR[0]}"
+PS1="${ANTES}${ERRO}${COR_BASE}(${USER}${COR_ARROBA}@${SERVER}${COR_BASE})${SEPARADOR}${COR_BASE}[${DIR}${COR_BASE}]${DEPOIS}${CURSOR}${COR[0]}"
 
 
    if [ $# -eq 1 ]
@@ -205,4 +216,3 @@ done
 
 echo "$orientacao"
 echo
-
